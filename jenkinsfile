@@ -16,14 +16,20 @@ environment {
     stages {
     	 stage('Checkout') {
             steps {
+<<<<<<< HEAD
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/pseudo113/nada1.git']]])
             }
         }
 
+=======
+                git 'https://github.com/pseudo113/nada1.git' 
+    }}}
+>>>>>>> dde8b53d0facd7242cd0b94f99903b505ecbb62c
 
         stage('Build') {
             steps {
                 bat label: '', script: 'mvn install'
+<<<<<<< HEAD
             }
         }
         stage('Test') {
@@ -76,3 +82,20 @@ environment {
     }
 
 }}
+=======
+            
+        }}
+        stage('Test') {
+            steps {
+                bat label: '', script: 'mvn test'
+            
+        }}
+        
+	stage("publish to nexus") {
+            steps {
+               
+        }}
+    
+
+}
+>>>>>>> dde8b53d0facd7242cd0b94f99903b505ecbb62c

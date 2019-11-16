@@ -1,6 +1,9 @@
 pipeline {
     agent any
-environment {
+     tools {x
+        maven "Maven 3.6.0"
+    }
+    environment {
         // This can be nexus3 or nexus2
         NEXUS_VERSION = "nexus2"
         // This can be http or https

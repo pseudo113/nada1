@@ -1,9 +1,9 @@
 pipeline {
-    agent any
-     tools {x
+  agent any
+  tools {x
         maven "Maven 3.6.0"
     }
-    environment {
+   environment {
         // This can be nexus3 or nexus2
         NEXUS_VERSION = "nexus2"
         // This can be http or https
@@ -15,9 +15,10 @@ pipeline {
         // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "nexus-credentials"
     }
-
-    stages {
-    	 stage('Checkout') {
+   
+   
+        stages {
+    	stage('Checkout') {
             steps {
                 git 'https://github.com/pseudo113/nada1.git'
             }

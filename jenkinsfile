@@ -1,13 +1,13 @@
 pipeline {
-  agent any
-  tools {x
-        maven "Maven 3.6.0"
+    agent any
+    tools {
+        maven "Maven 3.3.3"
     }
-   environment {
+    environment {
         // This can be nexus3 or nexus2
         NEXUS_VERSION = "nexus2"
         // This can be http or https
-        NEXUS_PROTOCOL = "http"
+        NEXUS_PROTOCOL = "https"
         // Where your Nexus is running
         NEXUS_URL = "127.0.0.1:8081/nexus"
         // Repository where we will upload the artifact
@@ -27,16 +27,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat label: '', script: 'mvn install'
+                //bat label: '', script: 'mvn install'
+		bat(/${MAVEN_HOME}\bin\mvn -Dmaven.test.failure.ignore clean package /), script: 'mvn install'
             }
-        }
+        
         stage('Test') {
             steps {
                 bat label: '', script: 'mvn test'
             }
         }
         
-	stage("publish to nexus") {
+
+
+        stage("publish to nexus") {
             steps {
                 script {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
